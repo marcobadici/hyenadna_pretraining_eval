@@ -10,19 +10,23 @@ guide future genomic model development.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will allow you to understand what the scripts do, how they were run, and how the outputs were then processed.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+The experiments petaining to this study were conducted utilizing the Google Colab notebook provided by the authors of the original paper, available
+at https://colab.research.google.com/drive/1wyVEQd4R3HYLTUOXEEQmp_I8aNC_aLhL?usp=sharing. The notebook contains the necessary components for initializing
+the Hyena Operator, retrieving the data for training and testing, setting up the character tokenizer, and finally putting the necessary pieces together.
+If attempting to replicate the experiments, the provided notebooks in this repo are currently in the 1M configuration as this was the last set of experiments
+that was run. In order to do this, the A100 GPU is necessary, thus requiring Colab Pro+. Running the model in the 1K configuration allows for the use of the
+T4 GPU, which comes with the free membership.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+The authors in their github repo, available here: https://github.com/HazyResearch/hyena-dna, provide the necessary elements for setting up an environment
+with the necessary installs and then running their code locally. The problem for us was computational in nature, thus we relied on the Colab implemenation
+instead to have access to cloud compute. Thus, this made the setup more simple, all the installs being included and are sure to be compatible with Google's
+cloud service.
 
 Say what the step will be
 
