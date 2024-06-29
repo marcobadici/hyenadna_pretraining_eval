@@ -28,60 +28,40 @@ with the necessary installs and then running their code locally. The problem for
 instead to have access to cloud compute. Thus, this made the setup more simple, all the installs being included and are sure to be compatible with Google's
 cloud service.
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+The necessary scripts are contained within the 'scripts' folder in the main branch. They are the following: 'HyenaDNA_training_&_inference__large_1M.ipynb' is
+a modification of the original script mentioned above. It is mainly the original code, containing the modifications mentioned by the authors, namely cosine decay
+learning rate scheduler, gradient clipping at 1.0, and optimizer parameter groups for setting layer-specific hyperparameters. It is currently setup for the 
+1M model. Secondly, there is the 'HyenaDNA_training_scratch.ipynb' script, which is setup for training the model from scratch. As opposed to the previous script,
+here we utilize the original notebook up to the point of importing the configuration and weights for the model we are investigating, in this case also the 1M 
+model as this was the last one investigated, after which we initialize the weights from scratch and only make use of the configuration. The following elements 
+are similar to the first script, with the character tokenizer, train and test functions, dataset retrieval, and parameter setup.
 
-### Break down into end to end tests
+To show further the way I worked with these notebooks, firstly I will address the model size. In both scripts mentioned previously, the model name, being either
+'hyenadna-large-1m-seqlen' or 'hyenadna-tiny-1k-seqlen', appears frequently at multiple locations. Whenever working with a specific model, I would manually go through
+the code and make changes at the necessary locations, either in the run_train function for the pre-trained model in order to make sure the right architecture and 
+configuration is downloaded, on in the case of the model trained from scratch the model name is mentioned at multiple points, such as for the loading of the
+pre-trained weights or for the initialization from scratch. As of now, both scripts are configured for the 1M model and can be run as is. Second manual modifications
+revolves around the name of the dataset within the run_train function. This would be replaced with the necessary dataset name before each
+run.
 
-Explain what these tests test and why
+The scripts are setup such that the naming of the files is done automatically, with the type of file (confusion matrix, model weights, accuracies for train and test), 
+number of epochs, name of dataset, and in the case of scratch models the seed utilized being included in the title. Because of the use of Colab, the filed had to then
+be manually downloaded. Folders were created for each downstream task, and all the files generated from every run pertaining to that specific task were gathered together.
 
-```
-Give an example
-```
+The last script, 'generation_outputs' was utilized for the analysis of the downloaded outputs. The files in which the outputs were saved had the following structure: 'all_'
+followed by a short identifier. The script finds all these folders, then parses the outputs, being able to identify the necessary elements such as 1k or 1m for model size,
+15 or 50 for number of epochs, the dataset, and seed. These are then stored for plotting. Plotting for the runs with 15 epochs are handled together, for the 1m and 1k models
+with plots for the same dataset and model size being shown side by side, progress of training and testing accuracies. Plot for 50 epochs is similar but handled separately.
+Finally, based on the generated confusion matrices I computed by hand multiple metrics for each task, such as accuracy, F1, recall, and precision. I ended up not including
+these as they were beyond the scope of the research, and because I noticed some inconsistencies in the results, signifying that I made some mistakes when computing the 
+values by hand. I have since double checked the accuracies which are correct and those are included in the final report. The final table contains the final test accuracy
+from each task as to compare to the computed accuracy, and while slight differences exist, they are comparable.
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-
-
-
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Great thanks to my supervisor, Niklas Schmidinger, for his support and help!
+* Further thanks to the authors who have provided great resources for the implementation and running of the experiments!
