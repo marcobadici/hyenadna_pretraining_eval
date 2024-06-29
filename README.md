@@ -51,7 +51,7 @@ The scripts are setup such that the naming of the files is done automatically, w
 number of epochs, name of dataset, and in the case of scratch models the seed utilized being included in the title. Because of the use of Colab, the filed had to then
 be manually downloaded. Folders were created for each downstream task, and all the files generated from every run pertaining to that specific task were gathered together.
 
-The last script, 'generation_outputs' was utilized for the analysis of the downloaded outputs. The files in which the outputs were saved had the following structure: 'all_'
+The last script, 'outputs_generation' was utilized for the analysis of the downloaded outputs. The files in which the outputs were saved had the following structure: 'all_'
 followed by a short identifier. The script finds all these folders, then parses the outputs, being able to identify the necessary elements such as 1k or 1m for model size,
 15 or 50 for number of epochs, the dataset, and seed. These are then stored for plotting. Plotting for the runs with 15 epochs are handled together, for the 1m and 1k models
 with plots for the same dataset and model size being shown side by side, progress of training and testing accuracies. Plot for 50 epochs is similar but handled separately.
